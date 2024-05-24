@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FSSR6942QL"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-FSSR6942QL');
+    </script>
+
+    <title>Conformalized Teleoperation: Confidently Mapping Human Inputs to High-Dimensional Robot Actions</title>
+    <link rel="icon" type="image/png" href="images/robot_arm.png">
+
+    <meta name="description" content="Conformalized Teleoperation: Confidently Mapping Human Inputs to High-Dimensional Robot Actions">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!--     <link rel="apple-touch-icon" href="apple-touch-icon.png"> -->
+  <!-- <link rel="icon" type="image/png" href="img/seal_icon.png"> -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.8.0/codemirror.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/default.min.css">
+    <link rel="stylesheet" href="css/app.css">
+    <!-- <link rel="stylesheet" href="css/bulma.min.css"> -->
+    <!-- <link rel="stylesheet" href="css/bulma-carousel.min.css"> -->
+    <!-- <link rel="stylesheet" href="css/bulma-slider.min.css"> -->
+    <link rel="stylesheet" href="css/bulma-myscope.css">
+
+    <!-- https://github.com/jgthms/bulma/issues/302#issuecomment-441890938 Follow this to use bulma style here without conflicts with app.css. I put bulma.min.css, bulma-carousel.min.css, and bulma-slider.min.css into a single file before applying less. -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.8.0/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.3/clipboard.min.js"></script>
+    <script src="js/bulma-carousel.min.js"></script>
+    <script src="js/bulma-slider.min.js"></script>
+    <script src="js/index.js"></script>
+    <script src="js/app.js"></script>
+
+    <style>
+        .nav-pills {
+          position: relative;
+          display: inline;
+        }
+        .imtip {
+          position: absolute;
+          top: 0;
+          left: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="main">
+        <div class="row mt-4">
+            <h2 class="col-md-12 text-center">
+                <b><font size="+5">Conformalized Teleoperation</font></b>: </br>Confidently Mapping Human Inputs to High-Dimensional Robot Actions</br>
+            </h2>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <ul class="list-inline">
+                <!-- <br> -->
+                <li><a href="https://mzhao98.github.io">Michelle Zhao</a></li>
+                <li><a href="https://www.cs.cmu.edu/~reids/">Reid Simmons</a></li>
+                <li><a href="https://hennyadmoni.com/">Henny Admoni</a></li>
+                <li><a href="https://www.cs.cmu.edu/~abajcsy/">Andrea Bajcsy</a></li>
+                <!-- <br> -->
+                <br>
+                    <a href="https://www.ri.cmu.edu/">
+                        <image src="images/CMU_Logo_Stack_Red.png" height="80">
+                    </a>
+
+                </ul>
+            </div>
+        </div>
+        
+        <div class="row justify-content-md-center">
+            <div class="col-md-2 text-center">
+                <a href="https:google.com">
+                    <img src="images/paper_little.png" height="45px">
+                    <h4><strong>Paper</strong></h4>
+                </a>
+            </div>
+            <div class="col-md-2 text-center">
+                <a href="https://youtube.com">
+                    <img src="images/youtube_icon.png" height="45px">
+                    <h4><strong>Video</strong></h4>
+                </a>
+            </div>
+            <div class="col-md-2 text-center">
+                <a href="https://github.com/conformalized-assistive-teleoperation/conformalized_teleop_code">
+                    <img src="images/github.png" height="45px">
+                    <h4><strong>Code</strong></h4>
+                </a>
+            </div>
+        </div>
+
+        <div class="row justify-content-md-center">
+            <div class="col-md-12 col-lg-10">
+                <br>
+                <h5 class="text-justify text-center">
+                    <!-- <strong>We combine VLM's commonsense reasoning and rigorous uncertainty quantification to enable agents to efficiently explore relevant regions, and then stop to answer questions about unknown 3D environments with calibrated confidence.</strong> -->
+                    Assess and rigorously quantify how confidently a learned assistive controller can infer a user’s intended high-dimensional action from low-dimensional inputs and states.                </h5>
+                <br>
+            </div>
+        </div>
+
+
+        <div class="row justify-content-md-center">
+            <div class="col-md-12 col-lg-10">
+                <h3 class="mt-4 mb-2">
+                    Abstract
+                </h3>
+                <p class="text-justify">
+                    Assistive robotic arms often have more degrees-of-freedom than a human teleoperator can control with a low-dimensional input, like a joystick. To overcome this challenge, existing approaches use data-driven methods to learn a mapping from low-dimensional human inputs to high-dimensional robot actions. However, determining if such a black-box mapping can confidently infer a user’s intended high-dimensional action from low-dimensional inputs remains an open problem. Our key idea is to adapt the assistive map at training time to additionally estimate high-dimensional action quantiles, and then calibrate these quantiles via rigorous uncertainty quantification methods. Specifically, we leverage adaptive conformal prediction which adjusts the intervals over time, reducing the uncertainty bounds when the mapping is performant and increasing the bounds when the mapping consistently mis-predicts. Furthermore, we propose an uncertainty-interval-based mechanism for detecting high- uncertainty user inputs and robot states. We evaluate the efficacy of our proposed approach in a 2D assistive navigation task and two 7DOF Kinova Jaco tasks involving assistive cup grasping and goal reaching. Our findings demonstrate that conformalized assistive teleoperation manages to detect (but not differentiate between) high uncertainty induced by diverse preferences and induced by low-precision behavior in the mapping’s training dataset. On the whole, we see this work as a key step towards enabling robots to quantify their own uncertainty and proactively seek intervention when needed.
+                </p>
+                <!-- <p style="text-align:center;">
+                    <image src="img/trial.png" width="100%">
+                </p> -->
+            </div>
+        </div>
+
+
+        <div class="row justify-content-md-center">
+            <div class="col-md-12 col-lg-10">
+                <h3>
+                    Citation
+                </h3>
+                <a href="https://arxiv.org/abs/2403.15941">[arxiv version]</a>
+                <div class="form-group col-md-12">
+                    <textarea id="bibtex" class="form-control" rows="6" readonly>
+@inproceedings{exploreeqa2024,
+    title={Conformalized Teleoperation: Confidently Mapping Human Inputs to High-Dimensional Robot Actions},
+    author={Zhao, Michelle and Simmons, Reid and Admoni, Henny and Bajcsy, Andrea},
+    booktitle={arXiv},
+    year={2024}
+}</textarea>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-md-center mt-4">
+            <div class="col-md-12 col-lg-10">
+                <h3>
+                    Acknowledgements
+                </h3>
+                <p class="text-justify">
+                    TBD.
+                </p>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>
