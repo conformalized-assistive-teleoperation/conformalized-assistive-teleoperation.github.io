@@ -1,154 +1,293 @@
 <!DOCTYPE html>
 <html>
+<head>
+  <meta charset="utf-8">
+  <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
+  <!-- Replace the content tag with appropriate information -->
+  <meta name="description" content="DESCRIPTION META TAG">
+  <meta property="og:title" content="SOCIAL MEDIA TITLE TAG"/>
+  <meta property="og:description" content="SOCIAL MEDIA DESCRIPTION TAG TAG"/>
+  <meta property="og:url" content="URL OF THE WEBSITE"/>
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
+  <meta property="og:image" content="static/image/your_banner_image.png" />
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
 
-<head lang="en">
-    <meta charset="UTF-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FSSR6942QL"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+  <meta name="twitter:title" content="TWITTER BANNER TITLE META TAG">
+  <meta name="twitter:description" content="TWITTER BANNER DESCRIPTION META TAG">
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
+  <meta name="twitter:image" content="static/images/your_twitter_banner_image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <!-- Keywords for your paper to be indexed by-->
+  <meta name="keywords" content="KEYWORDS SHOULD BE PLACED HERE">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    gtag('config', 'G-FSSR6942QL');
-    </script>
 
-    <title>Conformalized Teleoperation: Confidently Mapping Human Inputs to High-Dimensional Robot Actions</title>
-    <link rel="icon" type="image/png" href="images/robot_arm.png">
+  <title>Conformalized Interactive Imitation Learning: Handling Expert Shift and Intermittent Feedback</title>
+  <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+  rel="stylesheet">
 
-    <meta name="description" content="Conformalized Teleoperation: Confidently Mapping Human Inputs to High-Dimensional Robot Actions">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
 
-<!--     <link rel="apple-touch-icon" href="apple-touch-icon.png"> -->
-  <!-- <link rel="icon" type="image/png" href="img/seal_icon.png"> -->
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.8.0/codemirror.min.css">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/default.min.css">
-    <link rel="stylesheet" href="css/app.css">
-    <!-- <link rel="stylesheet" href="css/bulma.min.css"> -->
-    <!-- <link rel="stylesheet" href="css/bulma-carousel.min.css"> -->
-    <!-- <link rel="stylesheet" href="css/bulma-slider.min.css"> -->
-    <link rel="stylesheet" href="css/bulma-myscope.css">
-
-    <!-- https://github.com/jgthms/bulma/issues/302#issuecomment-441890938 Follow this to use bulma style here without conflicts with app.css. I put bulma.min.css, bulma-carousel.min.css, and bulma-slider.min.css into a single file before applying less. -->
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.8.0/codemirror.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.3/clipboard.min.js"></script>
-    <script src="js/bulma-carousel.min.js"></script>
-    <script src="js/bulma-slider.min.js"></script>
-    <script src="js/index.js"></script>
-    <script src="js/app.js"></script>
-
-    <style>
-        .nav-pills {
-          position: relative;
-          display: inline;
-        }
-        .imtip {
-          position: absolute;
-          top: 0;
-          left: 0;
-        }
-    </style>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script src="static/js/bulma-carousel.min.js"></script>
+  <script src="static/js/bulma-slider.min.js"></script>
+  <script src="static/js/index.js"></script>
 </head>
 <body>
-    <div class="container" id="main">
-        <div class="row mt-4">
-            <h2 class="col-md-12 text-center">
-                <b><font size="+5">Conformalized Teleoperation</font></b>: </br>Confidently Mapping Human Inputs to High-Dimensional Robot Actions</br>
-            </h2>
-        </div>
 
-        <div class="row">
-            <div class="col-md-12 text-center">
-                <ul class="list-inline">
-                <!-- <br> -->
-                <li><a href="https://mzhao98.github.io">Michelle Zhao</a></li>
-                <li><a href="https://www.cs.cmu.edu/~reids/">Reid Simmons</a></li>
-                <li><a href="https://hennyadmoni.com/">Henny Admoni</a></li>
-                <li><a href="https://www.cs.cmu.edu/~abajcsy/">Andrea Bajcsy</a></li>
-                <!-- <br> -->
-                <br>
-                    <a href="https://www.ri.cmu.edu/">
-                        <image src="images/CMU_Logo_Stack_Red.png" height="80">
-                    </a>
 
-                </ul>
-            </div>
-        </div>
-        
-        <div class="row justify-content-md-center">
-            <div class="col-md-2 text-center">
-                <a href="https://arxiv.org/abs/2406.07767">
-                    <img src="images/paper_little.png" height="45px">
-                    <h4><strong>Paper</strong></h4>
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">Conformalized Teleoperation:</h1>
+            <h2 class="title is-3 publication-title">Confidently Mapping Human Inputs to High-Dimensional Robot Actions</h2>
+            <div class="is-size-5 publication-authors">
+              <!-- Paper authors -->
+              <span class="author-block">
+                <a href="https://mzhao98.github.io/" target="_blank">Michelle Zhao</a>,
+              </span>
+              <span class="author-block">
+                  <a href="https://www.cs.cmu.edu/~reids/" target="_blank">Reid Simmons</a>,
+              </span>
+              <span class="author-block">
+                  <a href="https://hennyadmoni.com/" target="_blank">Henny Admoni</a>,
+              </span>
+              <span class="author-block">
+                  <a href="https://www.cs.cmu.edu/~abajcsy/" target="_blank">Andrea Bajcsy</a>
+              </span>
+
+                  </div>
+
+                  <div class="is-size-5 publication-authors">
+                    <span class="author-block">Carnegie Mellon Unversity<br>Published at RSS 2024</span>
+                  </div>
+
+                  <div class="column has-text-centered">
+                    <div class="publication-links">
+                         <!-- Arxiv PDF link -->
+                      <span class="link-block">
+                        <a href="static/pdfs/manuscript.pdf" target="_blank"
+                        class="external-link button is-normal is-rounded is-dark">
+                        <span class="icon">
+                          <i class="fas fa-file-pdf"></i>
+                        </span>
+                        <span>Paper</span>
+                      </a>
+                    </span>
+
+
+                  <!-- Github link -->
+                  <span class="link-block">
+                    <a href="https://github.com/conformalized-assistive-teleoperation/conformalized_teleop_code" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span>
+
+                <!-- ArXiv abstract Link -->
+                <span class="link-block">
+                  <a href="https://arxiv.org/pdf/2406.07767" target="_blank"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
                 </a>
+              </span>
             </div>
-<!--            <div class="col-md-2 text-center">-->
-<!--                <a href="https://youtube.com">-->
-<!--                    <img src="images/youtube_icon.png" height="45px">-->
-<!--                    <h4><strong>Video</strong></h4>-->
-<!--                </a>-->
-<!--            </div>-->
-            <div class="col-md-2 text-center">
-                <a href="https://github.com/conformalized-assistive-teleoperation/conformalized_teleop_code">
-                    <img src="images/github.png" height="45px">
-                    <h4><strong>Code</strong></h4>
-                </a>
-            </div>
+          </div>
         </div>
-
-        <div class="row justify-content-md-center">
-            <div class="col-md-12 col-lg-10">
-                <br>
-                <h5 class="text-justify text-center">
-                    <!-- <strong>We combine VLM's commonsense reasoning and rigorous uncertainty quantification to enable agents to efficiently explore relevant regions, and then stop to answer questions about unknown 3D environments with calibrated confidence.</strong> -->
-                    Assess and rigorously quantify how confidently a learned assistive controller can infer a user’s intended high-dimensional action from low-dimensional inputs and states.                </h5>
-                <br>
-            </div>
-        </div>
-
-
-        <div class="row justify-content-md-center">
-            <div class="col-md-12 col-lg-10">
-                <h3 class="mt-4 mb-2">
-                    Abstract
-                </h3>
-                <p class="text-justify">
-                    Assistive robotic arms often have more degrees-of-freedom than a human teleoperator can control with a low-dimensional input, like a joystick. To overcome this challenge, existing approaches use data-driven methods to learn a mapping from low-dimensional human inputs to high-dimensional robot actions. However, determining if such a black-box mapping can confidently infer a user’s intended high-dimensional action from low-dimensional inputs remains an open problem. Our key idea is to adapt the assistive map at training time to additionally estimate high-dimensional action quantiles, and then calibrate these quantiles via rigorous uncertainty quantification methods. Specifically, we leverage adaptive conformal prediction which adjusts the intervals over time, reducing the uncertainty bounds when the mapping is performant and increasing the bounds when the mapping consistently mis-predicts. Furthermore, we propose an uncertainty-interval-based mechanism for detecting high- uncertainty user inputs and robot states. We evaluate the efficacy of our proposed approach in a 2D assistive navigation task and two 7DOF Kinova Jaco tasks involving assistive cup grasping and goal reaching. Our findings demonstrate that conformalized assistive teleoperation manages to detect (but not differentiate between) high uncertainty induced by diverse preferences and induced by low-precision behavior in the mapping’s training dataset. On the whole, we see this work as a key step towards enabling robots to quantify their own uncertainty and proactively seek intervention when needed.
-                </p>
-                <!-- <p style="text-align:center;">
-                    <image src="img/trial.png" width="100%">
-                </p> -->
-            </div>
-        </div>
-
-
-        <div class="row justify-content-md-center">
-            <div class="col-md-12 col-lg-10">
-                <h3>
-                    Citation
-                </h3>
-                <a href="https://arxiv.org/abs/2406.07767">[arxiv version]</a>
-                <div class="form-group col-md-12">
-                    <textarea id="bibtex" class="form-control" rows="6" readonly>
-@article{zhao2024conformalized,
-  title={Conformalized Teleoperation: Confidently Mapping Human Inputs to High-Dimensional Robot Actions},
-  author={Zhao, Michelle and Simmons, Reid and Admoni, Henny and Bajcsy, Andrea},
-  journal={arXiv preprint arXiv:2406.07767},
-  year={2024}
-}</textarea>
-                </div>
-            </div>
-        </div>
-
+      </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <script>hljs.highlightAll();</script>
-</body>
-</html>
+  </div>
+</section>
+
+
+
+
+<!-- Paper abstract -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Assistive robotic arms often have more degrees-of-freedom than a human teleoperator can control with a
+            low-dimensional input, like a joystick. To overcome this challenge, existing approaches use data-driven
+            methods to learn a mapping from low-dimensional human inputs to high-dimensional robot actions. However,
+            determining if such a black-box mapping can <b> <i>confidently </i> </b> infer a user's <b> <i>intended </i> </b> high-dimensional
+            action from low-dimensional inputs remains an open problem. Our key idea is to adapt the assistive map at
+            training time to additionally estimate high-dimensional action quantiles, and then calibrate these quantiles
+            via rigorous uncertainty quantification methods. Specifically, we leverage adaptive conformal prediction which
+            adjusts the intervals over time, reducing the uncertainty bounds when the mapping is performant and increasing
+            the bounds when the mapping consistently mis-predicts. Furthermore, we propose an uncertainty-interval-based
+            mechanism for detecting high-uncertainty user inputs and robot states. We evaluate the efficacy of our proposed
+            approach in a 2D assistive navigation task and two 7DOF Kinova Jaco tasks involving assistive cup grasping and
+            goal reaching. Our findings demonstrate that conformalized assistive teleoperation manages to detect (but not
+            differentiate between) high uncertainty induced by diverse preferences and induced by low-precision
+            trajectories in the mapping's training dataset. On the whole, we see this work as a key step towards
+            enabling robots to quantify their own uncertainty and proactively seek intervention when needed.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End paper abstract -->
+
+
+<!-- Teaser video-->
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <br />
+      <div class="columns is-centered has-text-centered">
+      <h2 class="title is-3">Calibrating Uncertainty to Target User</h2></div>
+      <video poster="" id="tree" autoplay controls muted loop height="100%">
+        <!-- Your video here -->
+        <source src="static/videos/diagram_video.mov"
+        type="video/mp4">
+      </video>
+      <h2 class="subtitle has-text-centered">
+        During training, we modify the teleoperation controller to regress both the high-dimensional action
+        corresponding with the low-dimensional human input, but also the empirical quantiles. (right) When deployed
+        around a new user, we can calibrate the model to the user’s new dataset distribution. Adaptive Conformal
+        Quantile Regression enables us to enlarge or shrink the predicted quantiles to get coverage of the user’s
+        desired high-dimensional action.
+      </h2>
+    </div>
+  </div>
+</section>
+<!-- End teaser video -->
+
+  <!-- Teaser video-->
+<section class="hero is-small">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <br />
+      <div class="columns is-centered has-text-centered">
+      <h2 class="title is-3">Conformalized Teleoperation</h2></div>
+      <div style="text-align: center;">
+        <img src="static/images/fig1_teleop.png" width="75%"/>
+      </div>
+      <h2 class="subtitle has-text-centered">
+        We leverage conformal methods to quantify if the robot’s learned controller can reliably lift the human’s low-DoF
+        input (joystick) to their desired high-DoF action (7 joint velocities). For any joystick input at the current
+        state, the robot can assess its uncertainty in remapping that input (dot size in the expanded view is proportional
+        to uncertainty at that coordinate). Arrows emphasize directional joystick input. (left, top) If the human
+        pushes up or to the left on the joystick, the robot has low uncertainty, because it knows with high probability
+        the person wants to go forward towards the object. (left, bottom) If the human pushes backwards on the joystick,
+        the robot predicts a large pivot backwards, but is rightfully uncertain this is what the human intended.
+      </h2>
+    </div>
+  </div>
+</section>
+<!-- End teaser video -->
+
+
+<!-- Youtube video -->
+<section class="hero is-small is-light">
+  <div class="hero-body">
+    <div class="container">
+      <!-- Paper video. -->
+      <h2 class="title is-3">Video Presentation</h2>
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+
+          <div class="publication-video">
+            <!-- Youtube embed code here -->
+            <iframe src="https://www.youtube.com/embed/rkydo1yUGZY" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End youtube video -->
+
+
+
+
+
+<!-- Paper poster -->
+<section class="hero is-small is-light">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title">Poster</h2>
+
+      <iframe  src="static/pdfs/rss2024_poster.pdf" width="100%" height="550">
+          </iframe>
+
+      </div>
+    </div>
+  </section>
+<!--End paper poster -->
+
+
+<!--BibTex citation -->
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+      <pre><code>
+
+        @article{zhao2024conformalized,
+          title={Conformalized Teleoperation: Confidently Mapping Human Inputs to High-Dimensional Robot Actions},
+          author={Zhao, Michelle and Simmons, Reid and Admoni, Henny and Bajcsy, Andrea},
+          journal={Robotics: Systems and Science},
+          year={2024}
+        }
+      </code></pre>
+    </div>
+</section>
+<!--End BibTex citation -->
+
+
+
+
+
+
+
+
+  <footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+
+          <p>
+            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+            You are free to borrow the source code of this website, we just ask that you link back to this page in the footer. <br> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Statcounter tracking code -->
+  
+<!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
+
+    <!-- End of Statcounter Code -->
+
+  </body>
+  </html>
